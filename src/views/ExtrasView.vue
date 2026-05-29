@@ -30,7 +30,6 @@ function closeGame() {
 
     <div class="stage">
 
-      <!-- MENU -->
       <div v-if="!activeGame" class="grid menu-enter">
 
         <div class="cell glass" @click="openGame('jump')">
@@ -51,7 +50,6 @@ function closeGame() {
 
       </div>
 
-      <!-- GAME -->
       <div v-else class="game-stage glass game-enter">
 
         <button class="back" @click="closeGame">
@@ -99,7 +97,6 @@ function closeGame() {
   align-items: center;
 }
 
-/* GRID */
 .grid {
   display: grid;
 
@@ -109,7 +106,6 @@ function closeGame() {
   gap: 20px;
 }
 
-/* CELLS */
 .cell {
   width: 240px;
   height: 160px;
@@ -131,7 +127,6 @@ function closeGame() {
   transform: scale(1.04);
 }
 
-/* GAME MODE */
 .game-stage {
   width: 100%;
   height: 80vh;
@@ -143,19 +138,16 @@ function closeGame() {
   border-radius: 24px;
 }
 
-/* GAME WRAPPER */
 .game-wrapper {
   width: 100%;
   height: 100%;
 }
 
-/* FORCE GAME TO FIT */
 .game-wrapper > * {
   width: 100%;
   height: 100%;
 }
 
-/* BACK BUTTON */
 .back {
   position: absolute;
   top: 16px;
@@ -172,7 +164,6 @@ function closeGame() {
   cursor: pointer;
 }
 
-/* ANIMATIONS */
 .menu-enter {
   animation: menuFade 0.25s ease;
 }

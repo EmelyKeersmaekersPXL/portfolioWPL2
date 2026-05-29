@@ -22,7 +22,6 @@ let maxObjects = 5
 
 let justReset = false
 
-/* ---------------- INPUT ---------------- */
 function keyDown(e) {
   if (e.key === 'a' || e.key === 'ArrowLeft') keys.left = true
   if (e.key === 'd' || e.key === 'ArrowRight') keys.right = true
@@ -33,7 +32,6 @@ function keyUp(e) {
   if (e.key === 'd' || e.key === 'ArrowRight') keys.right = false
 }
 
-/* ---------------- START ---------------- */
 function startGame() {
   resetAll()
   justReset = true
@@ -50,7 +48,6 @@ function startGame() {
   }, 60)
 }
 
-/* ---------------- RESET ---------------- */
 function resetAll() {
   clearInterval(loop)
 
@@ -73,13 +70,11 @@ function resetAll() {
   maxObjects = 5
 }
 
-/* ---------------- SPAWN ---------------- */
 function spawn() {
   if (objects.value.length >= maxObjects) return
 
   const time = gameTime
 
-  // 🟢 HARD RULE: NO BUGS FOR FIRST 20 SECONDS
   const allowBad = time >= 20
 
   let good = true
@@ -98,14 +93,14 @@ function spawn() {
   })
 }
 
-/* ---------------- UPDATE LOOP ---------------- */
+
 function update() {
   if (gameState.value !== 'running') return
   if (justReset) return
 
   gameTime += 0.016
 
-  /* -------- PLAYER MOVEMENT -------- */
+
   const accel = 0.7
   const friction = 0.86
   const maxSpeed = 7
@@ -119,7 +114,7 @@ function update() {
   playerX.value += playerVX
   playerX.value = Math.max(0, Math.min(W - 40, playerX.value))
 
-  /* -------- SPAWN SYSTEM -------- */
+
   spawnCooldown -= 16
 
   if (spawnCooldown <= 0) {
@@ -131,7 +126,6 @@ function update() {
     spawnCooldown = baseDelay + randomness
   }
 
-  /* -------- OBJECT UPDATE -------- */
   for (let i = 0; i < objects.value.length; i++) {
     const o = objects.value[i]
 
@@ -159,14 +153,12 @@ function update() {
     }
   }
 
-  /* -------- DIFFICULTY -------- */
   if (gameTime > 10) maxObjects = 6
   if (gameTime > 18) maxObjects = 7
 
   if (lives.value <= 0) endGame()
 }
 
-/* ---------------- GAME OVER ---------------- */
 function endGame() {
   gameState.value = 'gameover'
   clearInterval(loop)
@@ -175,7 +167,6 @@ function endGame() {
   window.removeEventListener('keyup', keyUp)
 }
 
-/* ---------------- CLEANUP ---------------- */
 onUnmounted(() => {
   clearInterval(loop)
   window.removeEventListener('keydown', keyDown)
@@ -186,23 +177,18 @@ onUnmounted(() => {
 <template>
   <div class="game">
 
-    <!-- HUD -->
     <div class="hud">
       Score: {{ score }} | Lives: {{ lives }}
     </div>
 
-    <!-- START -->
     <div v-if="gameState === 'start'" class="overlay">
       <button class="btn" @click="startGame">Start Game</button>
     </div>
 
-    <!-- WORLD -->
     <div class="world">
 
-      <!-- PLAYER -->
       <div class="player" :style="{ left: playerX + 'px' }"></div>
 
-      <!-- OBJECTS -->
       <div
         v-for="(o, i) in objects"
         :key="i"
@@ -218,7 +204,6 @@ onUnmounted(() => {
 
     </div>
 
-    <!-- GAME OVER -->
     <div v-if="gameState === 'gameover'" class="overlay">
       <button class="btn" @click="startGame">Retry</button>
     </div>
@@ -243,7 +228,6 @@ onUnmounted(() => {
   border: 1px solid #333;
 }
 
-/* HUD */
 .hud {
   position: absolute;
   top: 10px;
@@ -256,7 +240,6 @@ onUnmounted(() => {
   z-index: 10;
 }
 
-/* PLAYER */
 .player {
   position: absolute;
   bottom: 10px;
@@ -266,7 +249,6 @@ onUnmounted(() => {
   border-radius: 3px;
 }
 
-/* OBJECTS */
 .obj {
   position: absolute;
   background: #2a2a2a;
@@ -279,7 +261,6 @@ onUnmounted(() => {
   border-color: #ff4d4d;
 }
 
-/* OVERLAY */
 .overlay {
   position: absolute;
   inset: 0;
@@ -290,7 +271,6 @@ onUnmounted(() => {
   z-index: 999;
 }
 
-/* BUTTON */
 .btn {
   padding: 10px 16px;
   background: #c084fc;

@@ -3,7 +3,6 @@
 
     <h1>Portfolio</h1>
 
-    <!-- NAME + PROFILE IMAGE ROW -->
     <div class="profile">
 
       <img
@@ -71,7 +70,6 @@
   padding: 40px;
 }
 
-/* PROFILE ROW */
 .profile {
   display: flex;
   align-items: center;
@@ -80,7 +78,6 @@
   margin-bottom: 20px;
 }
 
-/* PROFILE IMAGE */
 .avatar {
   width: 90px;
   height: 90px;
@@ -91,7 +88,6 @@
   box-shadow: 0 10px 25px rgba(0,0,0,0.25);
 }
 
-/* NAME */
 .name {
   margin: 0;
 }

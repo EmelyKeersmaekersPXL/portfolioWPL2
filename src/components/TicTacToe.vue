@@ -17,7 +17,6 @@ const winPatterns = [
   [0,4,8],[2,4,6]
 ]
 
-/* ---------------- WIN CHECK ---------------- */
 function checkWinner(b) {
   for (const [a,b2,c] of winPatterns) {
     if (b[a] && b[a] === b[b2] && b[a] === b[c]) {
@@ -31,7 +30,6 @@ function isDraw(b) {
   return b.every(cell => cell !== null) && !checkWinner(b)
 }
 
-/* ---------------- PLAYER ---------------- */
 function playerMove(i) {
   if (gameState.value !== 'running') return
   if (!isPlayerTurn.value) return
@@ -46,7 +44,6 @@ function playerMove(i) {
   setTimeout(aiMove, 250)
 }
 
-/* ---------------- AI ROUTER ---------------- */
 function aiMove() {
   if (gameState.value !== 'running') return
 
@@ -74,7 +71,6 @@ function aiMove() {
   isPlayerTurn.value = true
 }
 
-/* ---------------- EASY ---------------- */
 function randomMove() {
   const empty = board.value
     .map((v,i) => v ? null : i)
@@ -83,7 +79,6 @@ function randomMove() {
   return empty[Math.floor(Math.random() * empty.length)]
 }
 
-/* ---------------- MEDIUM ---------------- */
 function mediumAI() {
   let move = findWinningMove('O')
   if (move !== null) return move
@@ -94,7 +89,6 @@ function mediumAI() {
   return randomMove()
 }
 
-/* ---------------- HARD (MINIMAX) ---------------- */
 function bestMoveMinimax() {
   let bestScore = -Infinity
   let move = null
@@ -115,7 +109,6 @@ function bestMoveMinimax() {
   return move
 }
 
-/* ---------------- MINIMAX ---------------- */
 function minimax(b, depth, isMax) {
   const result = checkWinner(b)
 
@@ -144,7 +137,6 @@ function minimax(b, depth, isMax) {
   }
 }
 
-/* ---------------- HELPERS ---------------- */
 function findWinningMove(player) {
   for (let i = 0; i < 9; i++) {
     if (board.value[i]) continue
@@ -157,7 +149,6 @@ function findWinningMove(player) {
   return null
 }
 
-/* ---------------- GAME CONTROL ---------------- */
 function startGame() {
   board.value = Array(9).fill(null)
   winner.value = null
@@ -183,17 +174,14 @@ function endGame(result) {
 <template>
   <div class="game">
 
-    <!-- SCORE -->
     <div class="score-center" v-if="gameState !== 'start'">
       Score: {{ score }} | High: {{ highScore }}
     </div>
 
-    <!-- START -->
     <div v-if="gameState === 'start'" class="overlay">
 
       <h2>Tic Tac Toe</h2>
 
-      <!-- DIFFICULTY -->
       <div class="difficulty">
 
         <button
@@ -239,7 +227,6 @@ function endGame(result) {
       </button>
     </div>
 
-    <!-- BOARD -->
     <div class="board">
       <div
         v-for="(cell, i) in board"
@@ -251,7 +238,6 @@ function endGame(result) {
       </div>
     </div>
 
-    <!-- END -->
     <div v-if="gameState === 'end'" class="overlay">
 
       <h2 v-if="winner === 'X'">You Win</h2>
@@ -278,7 +264,6 @@ function endGame(result) {
   flex-direction: column;
 }
 
-/* SCORE */
 .score-center {
   position: absolute;
   top: 10px;
@@ -288,7 +273,6 @@ function endGame(result) {
   z-index: 10;
 }
 
-/* BOARD */
 .board {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -298,7 +282,6 @@ function endGame(result) {
   max-width: 320px;
 }
 
-/* CELL */
 .cell {
   aspect-ratio: 1;
   background: #222;
@@ -312,7 +295,6 @@ function endGame(result) {
   cursor: pointer;
 }
 
-/* OVERLAY */
 .overlay {
   position: absolute;
   inset: 0;
@@ -325,7 +307,6 @@ function endGame(result) {
   background: rgba(0,0,0,0.5);
 }
 
-/* START BUTTON */
 .start-btn {
   margin-top: 15px;
   padding: 10px 18px;
@@ -337,7 +318,6 @@ function endGame(result) {
   cursor: pointer;
 }
 
-/* SIGNAL DIFFICULTY */
 .difficulty {
   display: flex;
   gap: 12px;
@@ -397,7 +377,6 @@ function endGame(result) {
   opacity: 1;
 }
 
-/* FINAL BUTTON (PRETTY) */
 .primary-btn {
   margin-top: 15px;
   padding: 10px 20px;

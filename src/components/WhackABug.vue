@@ -12,9 +12,8 @@ const cells = ref(Array(9).fill('empty'))
 let activeIndex = -1
 let loop = null
 
-// 🎯 IMPORTANT: controlled difficulty
-let spawnDelay = 1200 // starts slow
-const minDelay = 650   // never gets faster than this
+let spawnDelay = 1200
+const minDelay = 650
 
 function clearCells() {
   cells.value = Array(9).fill('empty')
@@ -57,10 +56,9 @@ function startLoop() {
   loop = setInterval(() => {
     spawn()
 
-    // 🧠 slow controlled ramp (NOT exponential chaos)
     spawnDelay = Math.max(minDelay, spawnDelay - 10)
 
-    startLoop() // restart interval with new speed
+    startLoop()
   }, spawnDelay)
 }
 
@@ -99,25 +97,21 @@ onUnmounted(() => {
 <template>
   <div class="game">
 
-    <!-- TOP SCORE -->
     <div class="score-center" v-if="gameState !== 'start'">
       Score: {{ score }} | ❤️ {{ lives }}
     </div>
 
-    <!-- START -->
     <div v-if="gameState === 'start'" class="overlay">
       <h2>Whack-a-Bug 🐛</h2>
       <button @click="startGame">Start</button>
     </div>
 
-    <!-- GAME OVER -->
     <div v-if="gameState === 'gameover'" class="overlay">
       <h2>Game Over</h2>
       <p>Score: {{ score }}</p>
       <button @click="resetGame">Retry</button>
     </div>
 
-    <!-- GRID -->
     <div class="grid">
       <div
         v-for="(cell, i) in cells"
@@ -146,7 +140,6 @@ onUnmounted(() => {
   align-items: center;
 }
 
-/* SCORE */
 .score-center {
   position: absolute;
   top: 10px;
@@ -156,7 +149,6 @@ onUnmounted(() => {
   z-index: 10;
 }
 
-/* GRID */
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -166,7 +158,6 @@ onUnmounted(() => {
   max-width: 320px;
 }
 
-/* CELL */
 .cell {
   aspect-ratio: 1;
   background: #222;
@@ -180,7 +171,6 @@ onUnmounted(() => {
   cursor: pointer;
 }
 
-/* OVERLAY */
 .overlay {
   position: absolute;
   inset: 0;
@@ -193,7 +183,6 @@ onUnmounted(() => {
   background: rgba(0,0,0,0.5);
 }
 
-/* BUTTON */
 button {
   margin-top: 10px;
   padding: 10px 18px;

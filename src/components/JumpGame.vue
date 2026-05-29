@@ -90,7 +90,6 @@ function updateGame() {
   }
 }
 
-/* INPUT FIX */
 function handleKey(e) {
   if (e.code !== 'Space') return
 
@@ -138,29 +137,24 @@ onUnmounted(() => {
 <template>
   <div class="game">
 
-    <!-- SCORE CENTER (FIXED) -->
     <div class="score-center" v-if="gameState !== 'start'">
       Score: {{ score }}
     </div>
 
-    <!-- HIGH SCORE -->
     <div class="top-right">
       High: {{ highScore }}
     </div>
 
-    <!-- START -->
     <div v-if="gameState === 'start'" class="center-overlay">
       Press SPACE to Start
     </div>
 
-    <!-- GAME OVER -->
     <div v-if="gameState === 'gameover'" class="center-overlay">
       <h2>Game Over</h2>
       <p>Final Score: {{ score }}</p>
       <button @click="resetGame">Retry</button>
     </div>
 
-    <!-- WORLD -->
     <div class="world">
 
       <div class="player" :style="{ bottom: playerY + 'px' }"></div>
@@ -188,7 +182,6 @@ onUnmounted(() => {
   overflow: hidden;
 }
 
-/* PLAYER */
 .player {
   position: absolute;
   left: 60px;
@@ -203,7 +196,6 @@ onUnmounted(() => {
   z-index: 5;
 }
 
-/* OBSTACLE */
 .obstacle {
   position: absolute;
   bottom: 0;
@@ -216,7 +208,6 @@ onUnmounted(() => {
   z-index: 4;
 }
 
-/* GROUND */
 .ground {
   position: absolute;
   bottom: 0;
@@ -227,7 +218,6 @@ onUnmounted(() => {
   background: white;
 }
 
-/* SCORE CENTER FIX */
 .score-center {
   position: absolute;
   top: 10px;
@@ -243,7 +233,6 @@ onUnmounted(() => {
   text-shadow: 0 2px 8px rgba(0,0,0,0.6);
 }
 
-/* HIGH SCORE */
 .top-right {
   position: absolute;
   top: 10px;
@@ -256,7 +245,6 @@ onUnmounted(() => {
   text-shadow: 0 2px 8px rgba(0,0,0,0.6);
 }
 
-/* OVERLAY */
 .center-overlay {
   position: absolute;
   inset: 0;
@@ -270,7 +258,6 @@ onUnmounted(() => {
   background: rgba(0,0,0,0.4);
 }
 
-/* BUTTON */
 button {
   margin-top: 10px;
   padding: 10px 20px;

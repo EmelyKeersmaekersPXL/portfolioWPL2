@@ -1,12 +1,10 @@
 <template>
   <div class="app">
 
-    <!-- BLOBS -->
     <div class="blob b1"></div>
     <div class="blob b2"></div>
     <div class="blob b3"></div>
 
-    <!-- MAIN NAV -->
     <nav class="navbar glass">
 
       <router-link to="/">Home</router-link>
@@ -16,8 +14,6 @@
       <router-link to="/wpl2">WPL2</router-link>
 
       <router-link to="/extras">Extras</router-link>
-
-      <router-link to="/contact">Contact</router-link>
 
     </nav>
 
@@ -47,7 +43,6 @@ body {
   box-sizing: border-box;
 }
 
-/* NAVBAR */
 .navbar {
   position: sticky;
   top: 20px;
@@ -79,7 +74,6 @@ body {
   opacity: 1;
 }
 
-/* GLASS */
 .glass {
   background: rgba(255,255,255,0.08);
 
@@ -95,14 +89,12 @@ body {
     inset 0 1px 0 rgba(255,255,255,0.15);
 }
 
-/* PAGE */
 .page {
   width: min(1100px, 92%);
   margin: 40px auto;
   padding: 40px;
 }
 
-/* BLOBS */
 .blob {
   position: fixed;
   width: 300px;
