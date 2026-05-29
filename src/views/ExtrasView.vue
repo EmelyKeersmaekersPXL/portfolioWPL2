@@ -21,10 +21,12 @@ function closeGame() {
   <div class="page">
 
     <div class="hero glass">
-      <h1>Extras</h1>
+      <h1>Arcade</h1>
 
       <p>
-        A small collection of interactive mini games and experiments made while learning Vue and JavaScript.
+        Als een manier om mijn creativiteit verder te verkennen naast het hoofdproject,
+        heb ik geëxperimenteerd met Vue en JavaScript door een kleine verzameling interactieve
+        minigames en speelse experimenten te bouwen.
       </p>
     </div>
 
